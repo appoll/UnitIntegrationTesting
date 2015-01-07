@@ -28,6 +28,7 @@ public class FirstActivityFunctionalTest extends ActivityInstrumentationTestCase
     protected void setUp() throws Exception {
         super.setUp();
         setActivityInitialTouchMode(false);
+
         activity = getActivity();
         textField = (EditText)activity.findViewById(R.id.spinnerResult);
         firstButton = (Button)activity.findViewById(R.id.firstButton);
