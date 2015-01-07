@@ -9,10 +9,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
-
-import java.security.KeyException;
-
 /**
  * Created by Paul's on 07-Jan-15.
  */
@@ -33,7 +29,7 @@ public class FirstActivityFunctionalTest extends ActivityInstrumentationTestCase
         super.setUp();
         setActivityInitialTouchMode(false);
         activity = getActivity();
-        textField = (EditText)activity.findViewById(R.id.textField);
+        textField = (EditText)activity.findViewById(R.id.spinnerResult);
         firstButton = (Button)activity.findViewById(R.id.firstButton);
     }
 

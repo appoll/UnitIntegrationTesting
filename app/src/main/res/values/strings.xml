@@ -6,4 +6,18 @@
     <string name="action_settings">Settings</string>
     <string name="first_button_label">hit me</string>
 
+    <string-array name="Planets">
+        <item>Mercury</item>
+        <item>Venus</item>
+        <item>Earth</item>
+        <item>Mars</item>
+        <item>Jupiter</item>
+        <item>Saturn</item>
+        <item>Uranus</item>
+        <item>Neptune</item>
+        <item>Pluto</item>
+    </string-array>
+
+    <string name="planet_prompt">Select a planet</string>
+
 </resources>

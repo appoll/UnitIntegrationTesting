@@ -7,22 +7,43 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 
 
 public class FirstActivity extends Activity {
 
     EditText mEditText;
     Button mButton;
+    Spinner mSpinner ;
+
+    protected int mPos;
+    protected String mSelection;
+
+    protected ArrayAdapter<CharSequence> mAdapter;
+
+    public static final int DEFAULT_POSITION = 2;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_first);
 
-        mEditText = (EditText)findViewById(R.id.textField);
+        mSpinner = (Spinner)findViewById(R.id.Spinner01);
+        mEditText = (EditText)findViewById(R.id.spinnerResult);
         mButton = (Button)findViewById(R.id.firstButton);
+
+        mAdapter = ArrayAdapter.createFromResource(this, R.array.Planets,
+                android.R.layout.simple_spinner_dropdown_item);
+        mSpinner.setAdapter(mAdapter);
+
+        AdapterView.OnItemSelectedListener spinnerListener = new myOnItemSelectedListener(this,this.mAdapter);
+
+        mSpinner.setOnItemSelectedListener(spinnerListener);
 
         mButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -34,26 +55,54 @@ public class FirstActivity extends Activity {
         });
     }
 
+    public class myOnItemSelectedListener implements AdapterView.OnItemSelectedListener
+    {
+        ArrayAdapter<CharSequence> mLocalAdapter;
+        Activity mLocalContext;
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_first, menu);
-        return true;
+        public myOnItemSelectedListener(Activity c, ArrayAdapter<CharSequence> ad) {
+
+            this.mLocalContext = c;
+            this.mLocalAdapter = ad;
+
+        }
+
+        @Override
+        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+            FirstActivity.this.mPos = position;
+            FirstActivity.this.mSelection = parent.getItemAtPosition(position).toString();
+
+            mEditText.setText(FirstActivity.this.mSelection);
+        }
+
+        @Override
+        public void onNothingSelected(AdapterView<?> parent) {
+
+        }
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
+    protected void onResume() {
+        super.onResume();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
+        Spinner restoreSpinner = (Spinner)findViewById(R.id.Spinner01);
+        restoreSpinner.setSelection(getSpinnerPosition());
+    }
 
-        return super.onOptionsItemSelected(item);
+
+    public int getSpinnerPosition() {
+        return this.mPos;
+    }
+
+    public void setSpinnerPosition(int pos) {
+        this.mPos = pos;
+    }
+
+    public String getSpinnerSelection() {
+        return this.mSelection;
+    }
+
+    public void setSpinnerSelection(String selection) {
+        this.mSelection = selection;
     }
 }

@@ -1,6 +1,5 @@
 package paul.antton.testingjunit;
 
-import android.app.Instrumentation;
 import android.content.Intent;
 import android.test.ActivityUnitTestCase;
 import android.widget.Button;
@@ -31,14 +30,14 @@ public class FirstActivityUnitTest extends ActivityUnitTestCase<FirstActivity> {
 
 
         firstButton = (Button)activity.findViewById(R.id.firstButton);
-        textField = (EditText)activity.findViewById(R.id.textField);
+        textField = (EditText)activity.findViewById(R.id.spinnerResult);
     }
 
     public void testLayout()
     {
         // verify button and text field existence
         assertNotNull("button is null", activity.findViewById(R.id.firstButton));
-       assertNotNull("text field is null", activity.findViewById(R.id.textField));
+       assertNotNull("text field is null", activity.findViewById(R.id.spinnerResult));
 
         //verify correct label of the button
         assertEquals("incorrect button label", activity.getString(R.string.first_button_label), firstButton.getText());
