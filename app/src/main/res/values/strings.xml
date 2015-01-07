@@ -4,5 +4,6 @@
     <string name="app_name">TestingJunit</string>
     <string name="hello_world">Hello tests!</string>
     <string name="action_settings">Settings</string>
+    <string name="first_button_label">hit me</string>
 
 </resources>
